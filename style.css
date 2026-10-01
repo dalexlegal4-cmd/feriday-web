@@ -1,24 +1,93 @@
-*{box-sizing:border-box}
-html{scroll-behavior:smooth}
-body{margin:0;background:#070d20;color:#f6f0df;font-family:Arial,Helvetica,sans-serif}
-header{height:76px;display:flex;align-items:center;justify-content:space-between;padding:0 5vw;border-bottom:1px solid rgba(220,190,100,.12)}
-.brand{font-family:Georgia,serif;font-size:25px;font-weight:700;letter-spacing:1px}
-.logo{display:inline-flex;width:34px;height:34px;border:2px solid #e4bf55;border-radius:50%;align-items:center;justify-content:center;color:#e4bf55;margin-right:10px}
-.menu{background:rgba(255,255,255,.04);border:0;color:#e4bf55;font-size:24px;border-radius:10px;padding:8px 12px}
-.hero{min-height:calc(100vh - 76px);display:grid;grid-template-columns:1fr 1fr;align-items:center;gap:30px;padding:60px 7vw;overflow:hidden}
-.content{position:relative;z-index:2}
-.eyebrow{color:#d7b65a;font-size:13px;letter-spacing:3px;margin-bottom:20px}
-h1{font-family:Georgia,serif;font-size:clamp(48px,7vw,88px);line-height:.95;margin:0 0 24px;font-weight:500}
-h1 em{color:#e3bf5c;font-weight:400}
-p{max-width:520px;color:#c5c8d0;font-size:18px;line-height:1.6}
-.cta{display:inline-block;margin-top:20px;padding:16px 28px;border-radius:999px;background:#f5e5b8;color:#10172a;text-decoration:none;font-weight:700}
-.visual{position:relative;min-height:550px;display:flex;align-items:center;justify-content:center}
-.ring{position:absolute;border:2px solid rgba(229,191,82,.8);border-radius:50%;aspect-ratio:1/1}
-.ring1{width:min(82%,560px)}
-.ring2{width:min(75%,510px);border-color:rgba(245,230,184,.65)}
-video{position:relative;z-index:2;width:min(70%,480px);max-height:520px;object-fit:cover;border-radius:18px;background:#000;box-shadow:0 0 60px rgba(220,170,50,.15)}
-.feriday-watermark{position:absolute;z-index:1;bottom:9%;font-family:Georgia,serif;font-size:70px;letter-spacing:10px;color:rgba(245,230,184,.45)}
-.video-section{text-align:center;padding:70px 20px;background:#0b1329;border-top:1px solid rgba(220,190,100,.12)}
-.video-section h2{font-family:Georgia,serif;font-size:38px;color:#e3bf5c}
-.video-section p{margin:auto;font-size:15px}
-@media(max-width:800px){.hero{grid-template-columns:1fr;padding:45px 7vw}.visual{min-height:430px}.feriday-watermark{font-size:42px}.content{text-align:center}.content p{margin-left:auto;margin-right:auto}}
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  background: #050914;
+  color: #ffffff;
+  font-family: Arial, Helvetica, sans-serif;
+  overflow-x: hidden;
+}
+
+/* LOGO */
+
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  padding: 28px 6vw;
+  z-index: 20;
+}
+
+.logo {
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 27px;
+  font-weight: bold;
+  letter-spacing: 2px;
+  color: #f1d37b;
+}
+
+/* PRIMERA SECCIÓN */
+
+.hero {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  min-height: 650px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+/* VIDEO DE FONDO */
+
+.background-video {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 0;
+  transform: scale(1.03);
+}
+
+/* OSCURECER VIDEO */
+
+.dark-overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background:
+    linear-gradient(
+      90deg,
+      rgba(3, 7, 18, 0.82),
+      rgba(3, 7, 18, 0.35),
+      rgba(3, 7, 18, 0.72)
+    ),
+    linear-gradient(
+      180deg,
+      rgba(3, 7, 18, 0.35),
+      rgba(3, 7, 18, 0.2),
+      rgba(3, 7, 18, 0.8)
+    );
+}
+
+/* CONTENIDO */
+
+.hero-content {
+  position: relative;
+  z-index: 5;
+  width: min(900px, 90%);
+  text-align: center;
+  transition: transform 0.25s ease-out;
+}
+
+.small-title {
+  margin: 0 0 20px
