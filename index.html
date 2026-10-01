@@ -3,37 +3,111 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Feriday — Peritajes en grafotecnia</title>
+  <title>Yendai — Peritajes en grafotecnia</title>
   <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
-  <header>
-    <div class="brand"><span class="logo">◉</span> Feriday</div>
-    <button class="menu">☰</button>
+
+  <header class="header">
+    <div class="logo">Yendai</div>
   </header>
 
-  <main class="hero">
-    <div class="content">
-      <div class="eyebrow">◈ · INVESTIGACIÓN</div>
-      <h1>Peritajes en<br><em>grafotecnia.</em></h1>
-      <p>Peritos de parte en análisis de firmas y documentos con rigor técnico.</p>
-      <a class="cta" href="#video">Ver el video</a>
-    </div>
+  <main>
 
-    <div class="visual" id="video">
-      <div class="ring ring1"></div>
-      <div class="ring ring2"></div>
-      <video controls playsinline poster="">
+    <!-- Primera pantalla -->
+    <section class="hero">
+      <video class="background-video" autoplay muted loop playsinline>
         <source src="video.mp4" type="video/mp4">
-        Tu navegador no puede reproducir este video.
       </video>
-      <div class="feriday-watermark">FERIDAY</div>
-    </div>
+
+      <div class="dark-overlay"></div>
+
+      <div class="hero-content">
+        <p class="small-title">PERITAJES DE PARTE</p>
+
+        <h1>
+          Peritajes en<br>
+          <span>grafotecnia.</span>
+        </h1>
+
+        <p class="description">
+          Análisis especializado de firmas y documentos
+          con precisión, experiencia y rigor técnico.
+        </p>
+
+        <div class="buttons">
+          <a class="button whatsapp"
+             href="https://wa.me/"
+             target="_blank">
+            Hablar por WhatsApp
+          </a>
+
+          <a class="button email"
+             href="mailto:">
+            Hablar por e-mail
+          </a>
+        </div>
+      </div>
+
+      <div class="mouse-effect"></div>
+    </section>
+
+
+    <!-- Segunda pantalla -->
+    <section class="second-section">
+
+      <div class="second-content">
+        <p class="small-title">EXPERIENCIA Y PRECISIÓN</p>
+
+        <h2>
+          Su prueba en<br>
+          <span>manos expertas.</span>
+        </h2>
+
+        <p>
+          Cada documento cuenta una historia.
+          Nuestro trabajo consiste en analizarla
+          con precisión y objetividad.
+        </p>
+
+        <div class="buttons">
+          <a class="button whatsapp"
+             href="https://wa.me/"
+             target="_blank">
+            Hablar por WhatsApp
+          </a>
+
+          <a class="button email"
+             href="mailto:">
+            Hablar por e-mail
+          </a>
+        </div>
+      </div>
+
+    </section>
+
   </main>
 
-  <section class="video-section">
-    <h2>Conoce nuestro trabajo</h2>
-    <p>Reemplaza <strong>video.mp4</strong> por tu video para verlo directamente en la página.</p>
-  </section>
+
+  <script>
+    const hero = document.querySelector(".hero");
+    const content = document.querySelector(".hero-content");
+
+    hero.addEventListener("mousemove", (event) => {
+
+      const x = (event.clientX / window.innerWidth - 0.5) * 2;
+      const y = (event.clientY / window.innerHeight - 0.5) * 2;
+
+      content.style.transform =
+        translate(${x * 8}px, ${y * 8}px);
+
+    });
+
+    hero.addEventListener("mouseleave", () => {
+      content.style.transform = "translate(0, 0)";
+    });
+  </script>
+
 </body>
 </html>
