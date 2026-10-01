@@ -1,113 +1,44 @@
 <!DOCTYPE html>
 <html lang="es">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Yendai — Peritajes en grafotecnia</title>
-  <link rel="stylesheet" href="style.css">
-</head>
-
-<body>
-
-  <header class="header">
-    <div class="logo">Yendai</div>
-  </header>
-
-  <main>
-
-    <!-- Primera pantalla -->
-    <section class="hero">
-      <video class="background-video" autoplay muted loop playsinline>
-        <source src="video.mp4" type="video/mp4">
-      </video>
-
-      <div class="dark-overlay"></div>
-
-      <div class="hero-content">
-        <p class="small-title">PERITAJES DE PARTE</p>
-
-        <h1>
-          Peritajes en<br>
-          <span>grafotecnia.</span>
-        </h1>
-
-        <p class="description">
-          Análisis especializado de firmas y documentos
-          con precisión, experiencia y rigor técnico.
-        </p>
-
-        <div class="buttons">
-          <a class="button whatsapp"
-             href="https://wa.me/"
-             target="_blank">
-            Hablar por WhatsApp
-          </a>
-
-          <a class="button email"
-             href="mailto:">
-            Hablar por e-mail
-          </a>
-        </div>
-      </div>
-
-      <div class="mouse-effect"></div>
-    </section>
-
-
-    <!-- Segunda pantalla -->
-    <section class="second-section">
-
-      <div class="second-content">
-        <p class="small-title">EXPERIENCIA Y PRECISIÓN</p>
-
-        <h2>
-          Su prueba en<br>
-          <span>manos expertas.</span>
-        </h2>
-
-        <p>
-          Cada documento cuenta una historia.
-          Nuestro trabajo consiste en analizarla
-          con precisión y objetividad.
-        </p>
-
-        <div class="buttons">
-          <a class="button whatsapp"
-             href="https://wa.me/"
-             target="_blank">
-            Hablar por WhatsApp
-          </a>
-
-          <a class="button email"
-             href="mailto:">
-            Hablar por e-mail
-          </a>
-        </div>
-      </div>
-
-    </section>
-
-  </main>
-
-
-  <script>
-    const hero = document.querySelector(".hero");
-    const content = document.querySelector(".hero-content");
-
-    hero.addEventListener("mousemove", (event) => {
-
-      const x = (event.clientX / window.innerWidth - 0.5) * 2;
-      const y = (event.clientY / window.innerHeight - 0.5) * 2;
-
-      content.style.transform =
-        translate(${x * 8}px, ${y * 8}px);
-
-    });
-
-    hero.addEventListener("mouseleave", () => {
-      content.style.transform = "translate(0, 0)";
-    });
-  </script>
-
-</body>
-</html>
+name: Deploy JENDAY to GitHub Pages
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+concurrency:
+  group: "pages"
+  cancel-in-progress: true
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Install dependencies
+        run: npm install
+      - name: Build
+        run: npm run build
+        env:
+          BASE_PATH: /feriday-web/
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: out
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
